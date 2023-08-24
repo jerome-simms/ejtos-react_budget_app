@@ -1,7 +1,10 @@
-import React, { useReducer } from 'react';
+import React, { useContext } from 'react';
 import { AppContext } from '../context/AppContext';
 
+
 const CurrencyDropdown = () => {
+    const { dispatch, currency } = useContext(AppContext);
+
     const currencies = [
         { symbol: '$', name: 'Dollar'},
         { symbol: '£', name: 'Pound'},
@@ -9,14 +12,26 @@ const CurrencyDropdown = () => {
         { symbol: '₹', name: 'Rupee'}
     ];
 
+    const handleSelectChange = event => {
+        // get the value of the clicked on option
+        // then dispatch an event to update the currency in the store
+        const newCurrency = event.target.value;
+        // BUG: Once I dispatch the event, the rest of the UI does not update
+        dispatch({
+            name: 'CHG_CURRENCY',
+            payload: newCurrency
+        });
+    };
+
+    const currentCurrency = currencies.find(curCurrency => curCurrency.symbol === currency);
+    const { name: curName,  symbol: curSymbol } = currentCurrency;
+
     return (
         <div className='alert alert-secondary'>
-            <select style={{ backgroundColor: '#93E499', color: '#fff'}}>
-                {/* TODO: the default value should be the current selected currency 
-                I will temporarily hardcode a value for it*/}
-                <option defualtValue disabled selected>Currency (£ Pound)</option>
+            <select onChange={handleSelectChange} style={{ backgroundColor: '#93E499', color: '#fff'}}>
+                <option defualt='true' disabled selected>Currency ({curSymbol} {curName})</option>
                 {currencies.map(currency => (
-                    <option value={currency.symbol} style={{ backgroundColor: '#93E499'}}>{currency.symbol} {currency.name}</option>
+                    <option key={currency.name} value={currency.symbol} style={{ backgroundColor: '#93E499'}}>{currency.symbol} {currency.name}</option>
                 ))}
             </select>
         </div>
