@@ -10,6 +10,7 @@ import ExpenseTotal from './components/ExpenseTotal';
 import Remaining from './components/Remaining';
 import ExpenseList from './components/ExpenseList';
 import AllocationForm from './components/AllocationForm';
+import CurrencyDropdown from './components/CurrencyDropdown';
 
 import { AppProvider } from './context/AppContext';
 const App = () => {
@@ -36,6 +37,7 @@ const App = () => {
                         {/* here is where we add the component to change the currency */}
                         <div className='col-sm'>
                                {/* CurrencyDropdown plaeholder */}
+                               <CurrencyDropdown />
                         </div>
                 </div>
                        
