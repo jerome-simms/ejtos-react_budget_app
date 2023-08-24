@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react';
 import { AppContext } from '../context/AppContext';
 
 const AllocationForm = props => {
-    const { dispatch, remaining } = useContext(AppContext);
+    const { dispatch, remaining, currency } = useContext(AppContext);
 
     const [name, setName] = useState('');
     const [cost, setCost] = useState('');
@@ -58,6 +58,10 @@ const AllocationForm = props => {
                         <option defaultValue value='Reduce' name='Reduce'>Reduce</option>
                     </select>
 
+                    <div className='input-group-prepend' style={{ marginLeft: '2rem', marginRight: '-2rem' }}>
+                        {/* the value inside of the label should be gotten from the context/state */}
+                        <label htmlFor='cost'>{currency}</label>
+                    </div>
                     <input 
                         required='required'
                         type='number'
