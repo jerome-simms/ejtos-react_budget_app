@@ -32,6 +32,11 @@ const App = () => {
                         <div className='col-sm'>
                             <ExpenseTotal />    
                         </div>
+
+                        {/* here is where we add the component to change the currency */}
+                        <div className='col-sm'>
+                               {/* CurrencyDropdown plaeholder */}
+                        </div>
                 </div>
                        
                         {/* Add ExpenseList component here under */}
