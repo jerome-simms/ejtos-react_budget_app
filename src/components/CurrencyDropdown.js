@@ -16,9 +16,9 @@ const CurrencyDropdown = () => {
         // get the value of the clicked on option
         // then dispatch an event to update the currency in the store
         const newCurrency = event.target.value;
-        // BUG: Once I dispatch the event, the rest of the UI does not update
         dispatch({
-            name: 'CHG_CURRENCY',
+            // change the name property to type
+            type: 'CHG_CURRENCY',
             payload: newCurrency
         });
     };
